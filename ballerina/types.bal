@@ -300,7 +300,7 @@ public type AlertRequestsResponse record {
 
 public type CustomerResponseBodyFaxIds record {
     # The fax (facsimile) number of the customer
-    @constraint:String {maxLength: 17}
+    @constraint:String {maxLength: 67}
     string faxId?;
 };
 
@@ -483,7 +483,7 @@ public type CustomerGroupPurposeResponse1 record {
 
 public type CustomerResponseBodyDisplayNames record {
     # Contains the name used for display or enrichment purposes
-    @constraint:String {maxLength: 70}
+    @constraint:String {maxLength: 90}
     string displayName?;
 };
 
@@ -534,7 +534,7 @@ public type CustomerRelationshipResponse record {
 
 public type CustomerResponseBodyAddressCities record {
     # The town and/or city component of the base address of a customer
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string addressCity?;
 };
 
@@ -560,7 +560,7 @@ public type CustomerChargeResponse record {
 
 public type CustomerResponseBodyCountries record {
     # Identifies the country of the customer or a property or organization
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string country?;
 };
 
@@ -894,7 +894,7 @@ public type UnapprovedCustomerGroupPurposeResponseBodyInner record {
 
 public type CustomerResponseBodyPostingRestrictIds record {
     # Identifies any restrictions for posting entries that are imposed on a Customer
-    @constraint:Number {minValue: 0, maxValue: 2}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal postingRestrictId?;
 };
 
@@ -905,12 +905,12 @@ public type CustomerPrintAddressResponse1Body record {
     # Contains the communication address of the customer or full address of the property
     CustomerResponseBodyAddresses[] addresses?;
     # Identifies specific location name with in the country or town
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string locationName?;
     # Contains the street name of the customer or the property
     CustomerResponseBodyStreets[] streets?;
     # Stores the district name of the  Beneficiary Customer
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string districtName?;
     # Contains the flat number of the customer
     @constraint:String {maxLength: 70}
@@ -1338,7 +1338,7 @@ public type JointCustomerDetailsResponseBodyInner_deliveryOption record {
 
 public type CustomerResponseBodyTaxIds record {
     # Holds the Customer's TAX/SSN Id
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string taxId?;
 };
 
@@ -1721,13 +1721,13 @@ public type CustomerReportingStatusResponseBody CustomerReportingStatusResponseB
 
 public type CustomerResponseBodyRelationshipDetails record {
     # Relationship code for the Related Customer
-    @constraint:Number {minValue: 0, maxValue: 3}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal reverseJointRelationCode?;
     # Joint or related customer id
-    @constraint:Number {minValue: 0, maxValue: 10}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal jointCustomer?;
     # The identifier of the relationship between joint holder and owner 
-    @constraint:Number {minValue: 0, maxValue: 3}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal jointRelationCode?;
     CustomerResponseBodyRoleDetails[] roleDetails?;
 };
@@ -1823,10 +1823,10 @@ public type CustomerResponseBodyContactDetails record {
     @constraint:String {maxLength: 254}
     string contactData?;
     # Identifies the international calling prefix code of the phone or mobile number
-    @constraint:String {maxLength: 16}
+    @constraint:String {maxLength: 56}
     string iddPrefixPhone?;
     # Types of contacts available to users to communicate
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string contactType?;
 };
 
@@ -1984,13 +1984,13 @@ public type CustomerProfileResponseBody record {
     # Other officers managing the Customer
     CustomerResponseBodyOtherOfficers[] otherOfficerIds?;
     # The date on which the bank gets the notification that the customer is dead
-    @constraint:String {maxLength: 11}
+    @constraint:String {maxLength: 51}
     string notificationDateOfDeath?;
     # Gender of the Individual Customer
     @constraint:String {maxLength: 35}
     string gender?;
     # The death date of customer
-    @constraint:String {maxLength: 11}
+    @constraint:String {maxLength: 51}
     string dateOfDeath?;
     # Indicates the name of the customer. Originator is the party who requests the payment cancellation
     CustomerProfileResponseBodyCustomerNames[] customerNames?;
@@ -1998,7 +1998,7 @@ public type CustomerProfileResponseBody record {
     @constraint:String {maxLength: 35}
     string title?;
     # The internal bank status of a customer
-    @constraint:String {maxLength: 4}
+    @constraint:String {maxLength: 55}
     string customerStatus?;
     # Contains the street name of the customer or the property
     @constraint:String {maxLength: 70}
@@ -2061,16 +2061,16 @@ public type GetCustomerChargeHeaders record {
 
 public type CustomerResponseBodyCommunicationDevices record {
     # The phone number of the customer or prospect
-    @constraint:String {maxLength: 17}
+    @constraint:String {maxLength: 57}
     string phoneNumber?;
     # Preferred method of contact to the customer
-    @constraint:String {maxLength: 20}
+    @constraint:String {maxLength: 50}
     string preferredChannel?;
     # The mobile SMS number of the customer
-    @constraint:String {maxLength: 17}
+    @constraint:String {maxLength: 57}
     string smsNumber?;
     # Communication type to the customer, as defined by the institution. E.g. Proposal, Alert, Campaign, New Product Update, Robinson List, Statement
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string communicationType?;
     # Email Identifier of the Customer
     @constraint:String {maxLength: 50}
@@ -2329,18 +2329,18 @@ public type GetProspectCustomersHeaders record {
 
 public type CustomerResponseBodyResidenceDetails record {
     # Residence type of the customer like Farmhouse, Independent house, Residential Apartment, Serviced Apartments
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string residenceType?;
     # The date since the user has obtained the residence
     string residenceSince?;
     # Market Value of the customer's residence
-    @constraint:Number {minValue: 0, maxValue: 19}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal residenceValue?;
     # Residence Status of the Customer for CRM purpose like Owner, Tenant, Householder, Nester etc
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string residenceStatus?;
     # Mortgage value of the residence property of the customer
-    @constraint:Number {minValue: 0, maxValue: 19}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal residenceMortgageValue?;
 };
 
@@ -2593,7 +2593,7 @@ public type GetCustomerPhoneAddressHeaders record {
 
 public type CustomerResponseBodyOtherOfficers record {
     # Other officers managing the Customer
-    @constraint:String {maxLength: 4}
+    @constraint:String {maxLength: 50}
     string otherOfficerId?;
 };
 
@@ -3005,18 +3005,18 @@ public type CustomerResponseBodyEmployDetails record {
     @constraint:String {maxLength: 35}
     string occupation?;
     # Gross Salary details of the customer
-    @constraint:Number {minValue: 0, maxValue: 39}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal salaryAmount?;
     # Starting date of the customer's employment
     string employStartDate?;
     # Currency in which the Salary information of the customer is maintained
-    @constraint:String {maxLength: 3}
+    @constraint:String {maxLength: 50}
     string salaryCurrency?;
     # Name of the customer's employer
     @constraint:String {maxLength: 150}
     string employerName?;
     # Employment Job Title of the Customer
-    @constraint:String {maxLength: 10}
+    @constraint:String {maxLength: 55}
     string employJobTitle?;
     # Employment status of the customer
     @constraint:String {maxLength: 35}
@@ -3563,7 +3563,7 @@ public type CreateMessagesQueries record {
 
 public type CustomerResponseBodyOfficePhoneNumbers record {
     # The office phone number of the customer
-    @constraint:String {maxLength: 17}
+    @constraint:String {maxLength: 55}
     string officePhoneNumber?;
 };
 
@@ -3662,10 +3662,10 @@ public type CustomerResponseBodyLegalDetails record {
     # Expiry date of the legal document submitted as proof
     string legalExpiredDate?;
     # Unique reference number of the legal documents submitted as identification proof
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 50}
     string legalId?;
     # Name of the legal documents such as passport, driving licence etc., provided as identification proof
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 50}
     string legalDocumentName?;
     # Authority who issued the legal document
     @constraint:String {maxLength: 75}
@@ -3674,7 +3674,7 @@ public type CustomerResponseBodyLegalDetails record {
     @constraint:String {maxLength: 100}
     string legalHolderName?;
     # Indicates the country where the authorized legal document is issued
-    @constraint:String {maxLength: 2}
+    @constraint:String {maxLength: 50}
     string legalIssueCountry?;
 };
 
@@ -4107,13 +4107,13 @@ public type CustomerShortNamesResponseBody record {
 
 public type CustomerResponseBodyRoleDetails record {
     # This is used to specify what delivery addressing is to be used for the link customer. 
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string jointRelationDeliveryOption?;
     # Additional notes about the role
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string jointRelationRoleNote?;
     # Role of joint customer with the main customer
-    @constraint:Number {minValue: 0, maxValue: 20}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal jointRelationRoleId?;
 };
 
@@ -4223,7 +4223,7 @@ public type GetCustomerCreditCardsQueries record {
 
 public type CustomerResponseBodyOtherNationalityIds record {
     # Other Nationality of the Customer
-    @constraint:String {maxLength: 9}
+    @constraint:String {maxLength: 50}
     string otherNationalityId?;
 };
 
@@ -4487,7 +4487,7 @@ public type GetCustomerRelationshipHeaders record {
 
 public type CustomerResponseBodyAddresses record {
     # Contains the communication address of the customer or full address of the property
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string address?;
 };
 
@@ -4568,15 +4568,15 @@ public type ProspectCustomerResponseBody record {
     # Contains the communication address of the customer or full address of the property
     CustomerResponseBodyAddresses[] addresses?;
     # Identifies specific location name with in the country or town
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string locationName?;
     # Contains the street name of the customer or the property
     CustomerResponseBodyStreets[] streets?;
     # Stores the district name of the  Beneficiary Customer
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string districtName?;
     # Gender of the Individual Customer
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string gender?;
     # Department identifier
     @constraint:String {maxLength: 70}
@@ -4586,12 +4586,12 @@ public type ProspectCustomerResponseBody record {
     # Identifies the country of the customer or a property or organization
     CustomerResponseBodyCountries[] countries?;
     # Identify which country an entity has been registered
-    @constraint:String {maxLength: 2}
+    @constraint:String {maxLength: 50}
     string registeredCountry?;
     # The phone number of the customer or prospect
     ProspectCustomerBodyPhoneNumbers[] phoneNumbers?;
     # Identifies if the record is for a real person or a legal entity. Allowed Options: Person or Entity
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string personEntity?;
     # Email Identifier of the Customer
     ProspectCustomerBodyEmails[] emails?;
@@ -4931,17 +4931,17 @@ public type CustomerResponseBody record {
     @constraint:String {maxLength: 200}
     string customerMnemonic?;
     # Customer's risk class updated manually by the User overriding the risk class calculated by the KYC process
-    @constraint:String {maxLength: 10}
+    @constraint:String {maxLength: 50}
     string manualRiskClass?;
     # Contains the communication address of the customer or full address of the property
     CustomerResponseBodyAddresses[] addresses?;
     # Specifies the number of dependents to the customer
-    @constraint:Number {minValue: 0, maxValue: 2}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal numberOfDependents?;
     # Contains the street name of the customer or the property
     CustomerResponseBodyStreets[] streets?;
     # Name of the person who introduced the Customer to the bank
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string introducer?;
     # Date that first contact was made with the Customer
     string contactDate?;
@@ -4949,7 +4949,7 @@ public type CustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string overrideReason?;
     # The language that the contents of the field are displayed in
-    @constraint:Number {minValue: 0, maxValue: 2}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal language?;
     # Indicates the communication details of the customer like PhoneNumber, email
     CustomerResponseBodyCommunicationDevices[] communicationDevices?;
@@ -4981,7 +4981,7 @@ public type CustomerResponseBody record {
     # The town and/or city component of the base address of a customer
     CustomerResponseBodyAddressCities[] addressCities?;
     # The identifier of the nationality of a customer
-    @constraint:String {maxLength: 2}
+    @constraint:String {maxLength: 50}
     string nationalityId?;
     # Customer's given name
     @constraint:String {maxLength: 50}
@@ -5010,7 +5010,7 @@ public type CustomerResponseBody record {
     # Next date of KYC review defined manually by the User
     string kycNextReviewDate?;
     # Identifies the address postal code for the customer or the property
-    @constraint:Number {minValue: 0, maxValue: 35}
+    @constraint:Number {minValue: 0, maxValue: 10000}
     decimal postCode?;
     # Marital status of the customer
     @constraint:String {maxLength: 35}
@@ -5022,14 +5022,14 @@ public type CustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string gender?;
     # The death date of customer
-    @constraint:String {maxLength: 11}
+    @constraint:String {maxLength: 55}
     string dateOfDeath?;
     # The fax (facsimile) number of the customer
     CustomerResponseBodyFaxIds[] faxIds?;
     # Indicates the name of the customer. Originator is the party who requests the payment cancellation
     CustomerResponseBodyCustomerNames[] customerNames?;
     # Indicates the residence region of country used for capital gains tax purposes
-    @constraint:String {maxLength: 9}
+    @constraint:String {maxLength: 55}
     string taxResidenceRegion?;
     # Specifies the additional officers who can assist with a product/arrangement
     CustomerResponseBodyOtherOfficers[] otherOfficers?;
@@ -5037,35 +5037,35 @@ public type CustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string title?;
     # The internal bank status of a customer
-    @constraint:Number {minValue: 0, maxValue: 4}
+    @constraint:Number {minValue: 0, maxValue: 10000}
     decimal customerStatus?;
     # The office phone number of the customer
     CustomerResponseBodyOfficePhoneNumbers[] officePhoneNumbers?;
     # Whether information related to the customer has been collected and verified
     boolean isKycComplete?;
     # Describe the results of Anti Money Laundering
-    @constraint:String {maxLength: 14}
+    @constraint:String {maxLength: 55}
     string amlResult?;
     # Indicates the employment details of Customer like Status, title, occupation
     CustomerResponseBodyEmployDetails[] employDetails?;
     # Contains the name used for display or enrichment purposes
     CustomerResponseBodyDisplayNames[] displayNames?;
     # Indicates the Customer Relationship details of the customer
-    @constraint:String {maxLength: 35}
+    @constraint:String {maxLength: 55}
     string kycRelationship?;
     # The date of birth of an individual customer
     string dateOfBirth?;
     # Contains the contact details of the customer
     CustomerResponseBodyContactDetails[] contactDetails?;
     # Specifies how the Customer is considered by the bank and how he fits in with the Account Officer's overall marketing strategy
-    @constraint:Number {minValue: 0, maxValue: 4}
+    @constraint:Number {minValue: 0, maxValue: 100000}
     decimal target?;
     # Indicates the details of Relationship maintained by the Customer or Entity
     CustomerResponseBodyRelationshipDetails[] relationshipDetails?;
     # Date on which the entity is incorporated
     string birthIncorpDate?;
     # Indicates country of domicile
-    @constraint:String {maxLength: 9}
+    @constraint:String {maxLength: 55}
     string domicile?;
     # Indicates the legal document details of the Customer
     CustomerResponseBodyLegalDetails[] legalDetails?;
@@ -5150,10 +5150,10 @@ public type FatcaCustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string changeReason?;
     # Specifies whether there is power of attorney(POA) to a person with US Address. Possible values YES/NO
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 50}
     string isPoa?;
     # Identifies the citizenship details of customer. If blank it defaults to US
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 50}
     string isPlaceOfBirthUs?;
     # Identifies the Social Security number of the customer
     @constraint:String {maxLength: 35}
@@ -5162,7 +5162,7 @@ public type FatcaCustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string fatcaClientType?;
     # The identifier of the country of residence of a customer
-    @constraint:String {maxLength: 9}
+    @constraint:String {maxLength: 55}
     string residenceId?;
     # Identifies the effective date of change of status
     string statusChangeDate?;
@@ -5172,10 +5172,10 @@ public type FatcaCustomerResponseBody record {
     # Indicates the extensions
     record {} extensions?;
     # Specifies whether there is any standing instruction to an account in US. Possible values YES/NO
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 55}
     string standingInstructionOnUsAccount?;
     # The phone number of the customer or prospect
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 55}
     string phoneNumber?;
     # Specifies the self-classification received from entities 
     @constraint:String {maxLength: 35}
@@ -5186,10 +5186,10 @@ public type FatcaCustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string giin?;
     # Indicates country of domicile
-    @constraint:String {maxLength: 9}
+    @constraint:String {maxLength: 55}
     string domicile?;
     # Specifies if account has any instructions from a US address. Possible values YES or NO
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 55}
     string accountInstructionfromUs?;
     # Indicates if customer is a joint owner
     @jsondata:Name {value: "JointOwner"}
@@ -5198,10 +5198,10 @@ public type FatcaCustomerResponseBody record {
     @constraint:String {maxLength: 35}
     string greencardDetails?;
     # Identifies if the KYC check has been done or not. Possible values YES or NO
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 55}
     string isKycChecked?;
     # Specifies whether there is no contact that could be established with the client. Possible values YES or NO
-    @constraint:String {maxLength: 5}
+    @constraint:String {maxLength: 55}
     string isDormantAccount?;
     # Identifies any free format narrative related to FATCA status
     @constraint:String {maxLength: 35}

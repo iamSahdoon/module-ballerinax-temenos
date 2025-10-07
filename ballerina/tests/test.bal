@@ -30,3 +30,17 @@ function testGetCustomers() returns error? {
         test:assertFail("Failed to retrieve customers: " + response.message());
     }
 }
+
+@test:Config {}
+function testGetCustomerDetails() returns error? {
+    Client temenos = check new (apiKeyConfig = apiKeyConfig);
+    string customerId = "66052";
+    CustomerResponse|error response = temenos->/customers/[customerId].get();
+    if response is CustomerResponse {
+        io:println("Success Response for Customer Details: ", response);
+        test:assertTrue(true, "Successfully retrieved customer details for ID: " + customerId);
+    } else {
+        io:println("Error Response for Customer Details: ", response.message());
+        test:assertFail("Failed to retrieve customer details for ID " + customerId + ": " + response.message());
+    }
+}
