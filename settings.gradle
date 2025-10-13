@@ -27,11 +27,11 @@ plugins {
     id "com.gradle.enterprise" version "3.2"
 }
 
-rootProject.name = 'module-ballerinax-temenos'
+rootProject.name = 'module-ballerinax-temenos_v1'
 
-include ':TemenosConnector-ballerina'
+include ':temenos_v1-ballerina'
 
-project(':temenos-ballerina').projectDir = file("ballerina")
+project(':temenos_v1-ballerina').projectDir = file("ballerina")
 
 gradleEnterprise {
     buildScan {

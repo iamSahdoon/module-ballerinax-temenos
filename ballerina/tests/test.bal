@@ -18,9 +18,10 @@ import ballerina/io;
 
 configurable ApiKeysConfig apiKeyConfig = ?;
 
+final Client temenos = check new (apiKeyConfig);
+
 @test:Config {}
-function testGetCustomers() returns error? {
-    Client temenos = check new (apiKeyConfig = apiKeyConfig);
+isolated function testGetCustomers() returns error? {
     CustomerInformationResponse|error response = temenos->/customers.get();
     if response is CustomerInformationResponse {
         io:println("Success Response: ", response);
@@ -32,9 +33,8 @@ function testGetCustomers() returns error? {
 }
 
 @test:Config {}
-function testGetCustomerDetails() returns error? {
-    Client temenos = check new (apiKeyConfig = apiKeyConfig);
-    string customerId = "66052";
+isolated function testGetCustomerDetails() returns error? {
+    string customerId = "66052"; // Replace with a valid customerId from GET /customers response
     CustomerResponse|error response = temenos->/customers/[customerId].get();
     if response is CustomerResponse {
         io:println("Success Response for Customer Details: ", response);
