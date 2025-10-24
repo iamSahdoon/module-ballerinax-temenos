@@ -20,7 +20,9 @@ configurable ApiKeysConfig apiKeyConfig = ?;
 
 final Client temenos = check new (apiKeyConfig);
 
-@test:Config {}
+@test:Config {
+    groups: ["testGetCustomers"]
+}
 isolated function testGetCustomers() returns error? {
     CustomerInformationResponse|error response = temenos->/customers.get();
     if response is CustomerInformationResponse {
@@ -32,7 +34,9 @@ isolated function testGetCustomers() returns error? {
     }
 }
 
-@test:Config {}
+@test:Config {
+    groups: ["testGetCustomerDetails"]
+}
 isolated function testGetCustomerDetails() returns error? {
     string customerId = "66052"; // Replace with a valid customerId from GET /customers response
     CustomerResponse|error response = temenos->/customers/[customerId].get();
@@ -42,5 +46,18 @@ isolated function testGetCustomerDetails() returns error? {
     } else {
         io:println("Error Response for Customer Details: ", response.message());
         test:assertFail("Failed to retrieve customer details for ID " + customerId + ": " + response.message());
+    }
+}
+
+@test:Config {
+    groups: ["testGetCustomerRelationships"]
+}
+isolated function testGetCustomerRelationships() returns error? {
+    CustomerRelationshipResponse1|error response = temenos->/customers/relationships.get();
+    if response is CustomerRelationshipResponse1 {
+        io:println("Success Response for Customer Details: ", response);
+        test:assertTrue(response is CustomerRelationshipResponse1, "failed to retrieve customer relationships");
+    } else {
+        test:assertFail("Failed to retrieve customer relationships" + response.message());
     }
 }
